@@ -3,10 +3,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
-import 'antd/dist/antd.css'
-import LoginPage from './features/LoginPage/LoginPage'
-import MainPage from './features/MainPage/MainPage'
+} from 'react-router-dom';
+import 'antd/dist/antd.css';
+import LoginPage from './features/LoginPage/LoginPage';
+import MainPage from './features/MainPage/MainPage';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
             <LoginPage />
           </Route>
         </Switch>
-    </Router>
+      </Router>
     </div>
   );
 }
