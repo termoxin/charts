@@ -33,7 +33,7 @@ const SingleChart = ({ chartData }) => (
 );
 
 SingleChart.propTypes = {
-  chartData: PropTypes.objectOf.isRequired,
+  chartData: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default SingleChart;

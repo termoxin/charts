@@ -1,3 +1,6 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable import/prefer-default-export */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {

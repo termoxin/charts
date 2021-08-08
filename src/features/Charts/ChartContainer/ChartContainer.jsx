@@ -14,6 +14,6 @@ const ChartContainer = ({ chartsData }) => {
 };
 
 ChartContainer.propTypes = {
-  chartsData: PropTypes.objectOf.isRequired,
+  chartsData: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 export default ChartContainer;
