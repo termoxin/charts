@@ -11,10 +11,74 @@ import {
   UploadOutlined,
 } from '@ant-design/icons';
 import './MainPage.css'
+import ChartContainer from '../Charts/ChartContainer/ChartContainer';
 
 const { Sider, Content } = Layout;
 
 const MainPage = () => {
+  const response = [
+    {
+      name: 'Аэрофлот',
+      code: 'ARF',
+      value: [
+        { 
+          price: 2400,
+        },
+        {
+          price: 1398,
+        },
+        {
+          price: 9800,
+        },
+        {
+          price: 3908,
+        },
+        {
+          price: 4800,
+        },
+        {
+          price: 3800,
+        },
+        {
+          price: 4300,
+        },
+        {
+          price: 1300,
+        },
+      ]
+    },
+    {
+      name: 'Роснефть',
+      code: 'RSN',
+      value: [
+        { 
+          price: 2400,
+        },
+        {
+          price: 1398,
+        },
+        {
+          price: 9800,
+        },
+        {
+          price: 3908,
+        },
+        {
+          price: 4800,
+        },
+        {
+          price: 3800,
+        },
+        {
+          price: 4300,
+        },
+        {
+          price: 1300,
+        },
+      ]
+    }
+  ]
+
   const [collapsed] = useState(false);
   const isLoggedIn = useSelector(isUserLoggedIn);
   return (
@@ -44,7 +108,7 @@ const MainPage = () => {
             minHeight: 280,
           }}
         >
-          Здесь будут графики
+          <ChartContainer chartsData={response} /> 
         </Content>
       </Layout>
     </Layout>
