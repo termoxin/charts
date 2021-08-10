@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Layout, Menu } from 'antd';
 import { Redirect } from 'react-router-dom';
 import {
@@ -7,21 +7,26 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import fakeApi from '../../app/Api/api';
+import { fetchStocskData, selectData } from '../../app/stocksSlice';
 import { isUserLoggedIn } from '../../app/userSlice';
-
 import './MainPage.css';
 import ChartContainer from '../Charts/ChartContainer/ChartContainer';
 
 const { Sider, Content } = Layout;
 
 const MainPage = () => {
-  const response = fakeApi.getAllData();
+  const dispatch = useDispatch();
 
   const [collapsed] = useState(false);
   const isLoggedIn = useSelector(isUserLoggedIn);
+  const response = useSelector(selectData);
+
+  useEffect(() => {
+    dispatch(fetchStocskData());
+  }, []);
+
   return (
-    isLoggedIn
+    isLoggedIn && response
       ? (
         <Layout className="main-layout">
           <Sider trigger={null} collapsible collapsed={collapsed}>

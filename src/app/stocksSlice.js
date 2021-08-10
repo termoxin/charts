@@ -10,25 +10,25 @@ import fakeApi from './Api/api';
   3.
 */
 const initialState = {
-  stocksData: [],
+  stocks: [],
 };
 
 // возвращает массив данных асинхронно
 export const fetchStocskData = createAsyncThunk(
-  'counter/setAllData',
+  'stocksData/getAllData',
   async () => {
     const response = await fakeApi.getAllData();
     // The value we return becomes the `fulfilled` action payload
-    return response.data;
+    return response;
   },
 );
 
 // возвращаем асинхронно один объект для отрисовки
-export const fetchPiecekData = createAsyncThunk(
-  'counter/setSinglePiece',
+export const fetchPieceData = createAsyncThunk(
+  'stocksData/getSinglePiece',
   async (code) => {
     const response = await fakeApi.getSinglePiece(code);
-    return response.data;
+    return response;
   },
 );
 
@@ -36,6 +36,14 @@ export const stocksSlice = createSlice({
   name: 'stocksData',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchStocskData.fulfilled, (state, action) => {
+        state.stocks = action.payload;
+      });
+  },
 });
+
+export const selectData = (state) => state.stocks.stocks;
 
 export default stocksSlice.reducer;

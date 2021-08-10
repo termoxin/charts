@@ -41,7 +41,7 @@ class APIGenerator {
 
   addPricesToData() {
     return this.staticData.map(
-      (dataChunk) => Object.assign(dataChunk, this.createValuesObject()),
+      (dataChunk) => ({ ...dataChunk, ...this.createValuesObject() }),
     );
   }
 
@@ -56,9 +56,9 @@ class APIGenerator {
   getSinglePiece(code) {
     return new Promise(
       (resolve) => setTimeout(() => resolve(
-        Object.assign(
-          this.staticData.find((chunk) => chunk.code === code), this.createValuesObject(),
-        ),
+        {
+          ...this.staticData.find((chunk) => chunk.code === code), ...this.createValuesObject(),
+        },
       ), this.delay),
     );
   }
