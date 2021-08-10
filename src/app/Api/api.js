@@ -14,9 +14,18 @@ const staticData = [
 ];
 
 class APIGenerator {
-  constructor(data, priceObject) {
+  constructor(data, delay, priceObject) {
     this.staticData = data;
+    this.delay = delay;
     this.priceObject = priceObject;
+  }
+
+  createValuesObject() {
+    return {
+      values: this.createFakePrices(
+        this.priceObject.minLength, this.priceObject.maxLength, this.priceObject.maxPrice,
+      ),
+    };
   }
 
   createFakePrices(minLength, maxLength, maxPrice) {
@@ -32,28 +41,30 @@ class APIGenerator {
 
   addPricesToData() {
     return this.staticData.map(
-      (dataChunk) => Object.assign(dataChunk, {
-        values: this.createFakePrices(
-          this.priceObject.minLength, this.priceObject.maxLength, this.priceObject.maxPrice,
-        ),
-      }),
+      (dataChunk) => Object.assign(dataChunk, this.createValuesObject()),
     );
   }
 
   getAllData() {
-    return this.addPricesToData();
+    return new Promise(
+      (resolve) => setTimeout(() => resolve(
+        this.addPricesToData(),
+      ), this.delay),
+    );
   }
 
   getSinglePiece(code) {
-    return Object.assign(this.staticData.find((chunk) => chunk.code === code), {
-      values: this.createFakePrices(
-        this.priceObject.minLength, this.priceObject.maxLength, this.priceObject.maxPrice,
-      ),
-    });
+    return new Promise(
+      (resolve) => setTimeout(() => resolve(
+        Object.assign(
+          this.staticData.find((chunk) => chunk.code === code), this.createValuesObject(),
+        ),
+      ), this.delay),
+    );
   }
 }
 
-const fakeApi = new APIGenerator(staticData, {
+const fakeApi = new APIGenerator(staticData, 1000, {
   minLength: 7,
   maxLength: 7,
   maxPrice: 10000,
