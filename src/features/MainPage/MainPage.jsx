@@ -17,7 +17,9 @@ const { Sider, Content } = Layout;
 const MainPage = () => {
   const dispatch = useDispatch();
 
-  const [collapsed] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [stockType, setStockType] = useState('share');
+
   const isLoggedIn = useSelector(isUserLoggedIn);
   const response = useSelector(selectData);
 
@@ -29,16 +31,16 @@ const MainPage = () => {
     isLoggedIn && response
       ? (
         <Layout className="main-layout">
-          <Sider trigger={null} collapsible collapsed={collapsed}>
+          <Sider trigger={null}>
             <div className="logo" />
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-              <Menu.Item key="1" icon={<UserOutlined />}>
+              <Menu.Item key="1" icon={<UserOutlined />} onClick={() => setStockType('share')}>
                 Акции
               </Menu.Item>
-              <Menu.Item key="2" icon={<VideoCameraOutlined />}>
+              <Menu.Item key="2" icon={<VideoCameraOutlined />} onClick={() => setStockType('bond')}>
                 Валюты
               </Menu.Item>
-              <Menu.Item key="3" icon={<UploadOutlined />}>
+              <Menu.Item key="3" icon={<UploadOutlined />} onClick={() => setStockType('metal')}>
                 Металлы
               </Menu.Item>
             </Menu>
@@ -52,7 +54,7 @@ const MainPage = () => {
                 minHeight: 280,
               }}
             >
-              <ChartContainer chartsData={response} />
+              <ChartContainer chartsData={response.filter((el) => el.type === stockType)} />
             </Content>
           </Layout>
         </Layout>
