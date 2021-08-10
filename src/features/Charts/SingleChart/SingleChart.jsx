@@ -11,7 +11,7 @@ const SingleChart = ({ chartData }) => (
     <LineChart
       width={300}
       height={150}
-      data={chartData.value}
+      data={chartData.values}
       margin={{
         top: 5,
         right: 30,
