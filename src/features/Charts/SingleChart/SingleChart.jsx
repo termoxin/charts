@@ -31,7 +31,7 @@ const SingleChart = ({ chartData }) => (
     </LineChart>
   </div>
 );
-
+//*
 SingleChart.propTypes = {
   chartData: PropTypes.objectOf(PropTypes.any).isRequired,
 };
