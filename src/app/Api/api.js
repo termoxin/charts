@@ -20,7 +20,7 @@ class APIGenerator {
     this.priceObject = priceObject;
   }
 
-  createValuesObject() {
+  get value() {
     return {
       values: this.createFakePrices(
         this.priceObject.minLength, this.priceObject.maxLength, this.priceObject.maxPrice,
@@ -41,7 +41,7 @@ class APIGenerator {
 
   addPricesToData() {
     return this.staticData.map(
-      (dataChunk) => ({ ...dataChunk, ...this.createValuesObject() }),
+      (dataChunk) => ({ ...dataChunk, ...this.values }),
     );
   }
 
@@ -57,7 +57,7 @@ class APIGenerator {
     return new Promise(
       (resolve) => setTimeout(() => resolve(
         {
-          ...this.staticData.find((chunk) => chunk.code === code), ...this.createValuesObject(),
+          ...this.staticData.find((chunk) => chunk.code === code), ...this.values,
         },
       ), this.delay),
     );
