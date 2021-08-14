@@ -1,5 +1,3 @@
-/* eslint-disable import/no-named-as-default */
-/* eslint-disable import/prefer-default-export */
 import { configureStore } from '@reduxjs/toolkit';
 import stocksSlice from './stocksSlice';
 import userSlice from './userSlice';
