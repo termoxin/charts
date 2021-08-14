@@ -40,6 +40,9 @@ export const stocksSlice = createSlice({
     builder
       .addCase(fetchStocskData.fulfilled, (state, action) => {
         state.stocks = action.payload;
+      })
+      .addCase(fetchPieceData.fulfilled, (state) => {
+        console.log(state.stocks);
       });
   },
 });

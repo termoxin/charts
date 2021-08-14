@@ -20,14 +20,6 @@ class APIGenerator {
     this.priceObject = priceObject;
   }
 
-  get value() {
-    return {
-      values: this.createFakePrices(
-        this.priceObject.minLength, this.priceObject.maxLength, this.priceObject.maxPrice,
-      ),
-    };
-  }
-
   createFakePrices(minLength, maxLength, maxPrice) {
     const pricesLength = Math.floor(Math.random() * (maxLength - minLength) + minLength);
     const valuesArray = [];
@@ -37,6 +29,14 @@ class APIGenerator {
       });
     }
     return valuesArray;
+  }
+
+  get values() {
+    return {
+      values: this.createFakePrices(
+        this.priceObject.minLength, this.priceObject.maxLength, this.priceObject.maxPrice,
+      ),
+    };
   }
 
   addPricesToData() {
