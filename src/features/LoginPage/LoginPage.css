@@ -1,0 +1,10 @@
+.form-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background: #eaeaea;
+}
+
+form {
+    width: 100%;
+}
